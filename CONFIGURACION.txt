@@ -1,0 +1,7 @@
+{
+    "videoId": "VIDEO_ID_AQUÍ",
+    "title": "TÍTULO_DEL_VIDEO_AQUÍ",
+    "hashtags": "#ejemplo #hashtag",
+    "viewCount": 1000,
+    "description": "Descripción del video."
+}
