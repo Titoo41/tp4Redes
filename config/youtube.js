@@ -1,5 +1,10 @@
-// config/youtube.js
 const axios = require('axios');
+//FUNCION PARA QUE LOS VIDEOS SEAN DE ARGENTINA Y QUE DEVUELVA SOLO 5
+//TAMBIEN HABIAMOS AGREGADO LA CATEGORIA PERO NO FUNCIONABA
+
+
+// EXPLICAR LO DE CATEGORIA
+
 
 const getYouTubeTrends = async (regionCode = 'AR', maxResults = 5) => {
     try {
@@ -7,8 +12,8 @@ const getYouTubeTrends = async (regionCode = 'AR', maxResults = 5) => {
             params: {
                 part: 'snippet',
                 chart: 'mostPopular',
-                regionCode, // Ahora es 'AR' para Argentina
-                maxResults, // Ahora solo se obtienen 5 resultados
+                regionCode, 
+                maxResults, 
                 key: process.env.YOUTUBE_API_KEY,
             },
         });

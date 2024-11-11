@@ -1,18 +1,18 @@
-// controllers/youtubeController.js
 const { getYouTubeTrends } = require('../config/youtube');
 const jwt = require('jsonwebtoken');
 
 const fetchTrendsAndGenerateHashtags = async (req, res) => {
     try {
-        const regionCode = 'AR'; // Código de región para Argentina
-        const videoCategoryId = '20'; // ID de la categoría "Videojuegos"
+        const regionCode = 'AR'; 
+        const videoCategoryId = '20';
+        // LA CATEGORIA NO FUNCIONA BIEN , PERO ES POR CONTEXTO HUMANO /// EXPLICAR ////
         
-        // Obtenemos las tendencias especificando los parámetros
+        
         const trends = await getYouTubeTrends(regionCode, videoCategoryId); 
 
-        // Ordenamos los videos por la cantidad de visualizaciones
+        // ESTA FUNCION LA COPIE SUGERIDA ES PARA QUE NOS ORDENE LOS VIDEOS SEGUN VISTAS
         const sortedTrends = trends.sort((a, b) => {
-            return (b.statistics.viewCount - a.statistics.viewCount); // Orden descendente
+            return (b.statistics.viewCount - a.statistics.viewCount); 
         });
 
         const response = sortedTrends.map(video => {
@@ -21,7 +21,7 @@ const fetchTrendsAndGenerateHashtags = async (req, res) => {
             return {
                 title: video.snippet.title,
                 hashtags,
-                viewCount: video.statistics.viewCount // Incluimos la cantidad de vistas
+                viewCount: video.statistics.viewCount
             };
         });
 
@@ -35,15 +35,12 @@ const fetchTrendsAndGenerateHashtags = async (req, res) => {
 };
 
 const generateToken = (req, res) => {
-    // Aquí puedes agregar la lógica para autenticar al usuario.
-    // En este ejemplo, usamos un objeto dummy para el usuario.
     const user = { id: 1, username: 'titimod' };
-
-    // Generar el token
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-    // Devolver el token
     res.json({ token });
 };
 
 module.exports = { fetchTrendsAndGenerateHashtags, generateToken };
+
+
+
